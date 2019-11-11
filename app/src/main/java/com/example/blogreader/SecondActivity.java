@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,6 +15,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.blogreader.adapter.PostAdapter;
+import com.example.blogreader.model.PostList;
 import com.google.android.material.navigation.NavigationView;
 
 public class SecondActivity extends AppCompatActivity {
@@ -23,6 +27,8 @@ public class SecondActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
 
     NavigationView navigationView;
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
+        recyclerView = findViewById(R.id.postList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getData();
     }
 
@@ -59,7 +67,11 @@ public class SecondActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                R.string.app_name,
+                R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
@@ -70,6 +82,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PostList> call, Response<PostList> response) {
                 PostList list = response.body();
+                recyclerView.setAdapter(new PostAdapter(SecondActivity.this, list.getItems()));
                 Toast.makeText(SecondActivity.this, "Success", Toast.LENGTH_SHORT).show();
             }
 

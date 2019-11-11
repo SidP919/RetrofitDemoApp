@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:background="@color/colorPrimaryDark"
     android:elevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <ImageView
@@ -26,14 +26,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:maxLines="1"
             android:ellipsize="end"
-            android:maxLines="1" />
+            android:paddingStart="16dp"
+            android:textColor="@android:color/white"
+            tools:text="Hello World" />
 
         <TextView
             android:id="@+id/post_description"
             style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:textColor="@android:color/white"
+            tools:text="Hello Word"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="2" />

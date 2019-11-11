@@ -1,5 +1,5 @@
 
-package com.example.blogreader;
+package com.example.blogreader.model;
 
 import java.util.List;
 
